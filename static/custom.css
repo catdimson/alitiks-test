@@ -1,0 +1,39 @@
+#content-main .custom_button, #changelist .actions .button {
+    background: #55bfe0;
+    padding: 3px 12px;
+    font-size: 15px;
+    line-height: 2.2;
+    border-radius: 10px;
+    text-transform: capitalize;
+    color: white;
+    height: auto;
+    border: none;
+    box-shadow: none;
+}
+
+#changelist .actions select {
+    height: 39px;
+    margin-right: 15px;
+    border-radius: 10px;
+}
+
+#content-main .custom_button.addlink {
+    margin-top: -100px;
+}
+
+tbody tr th, tbody tr td:not(:first-child) {
+    padding-left: 25px;
+}
+
+.object-tools {
+    margin-top: -26px;
+}
+
+table thead th .text a {
+    font-size: 18px;
+    text-transform: capitalize;
+    color: black;
+}
+table td, table th {
+    font-size: 16px;
+}

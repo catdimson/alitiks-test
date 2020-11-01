@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'test_work.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,4 +119,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
+# selery settings
+REDIS_PORT = '6379'
+RABBITMQ_PORT = '5672'
+CELERY_BROKER_URL = f'redis://redis:{REDIS_PORT}'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = f'redis://redis:{REDIS_PORT}'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+
+# Это было добавлено для работы со статикой
+# !!!!!!! этот путь используется в теге {% static %}
 STATIC_URL = '/static/'
+# путь для загрузки медиа файлов
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# !!!!!!! с этой шляпой начинает работать
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+
+# !!!!!!! Если файлы статики разбросаны по компу, то указать до них пути.
+STATICFILES_DIRS = [STATIC_DIR]
+
+# !!!!!!! сюда будет собрана вся статика при наборе: python manage.py collectstatic
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
