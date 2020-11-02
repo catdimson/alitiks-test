@@ -11,6 +11,10 @@
     box-shadow: none;
 }
 
+.text span {
+    color: black;
+}
+
 #changelist .actions select {
     height: 39px;
     margin-right: 15px;
@@ -18,7 +22,7 @@
 }
 
 #content-main .custom_button.addlink {
-    margin-top: -100px;
+    margin-top: 35px;
 }
 
 tbody tr th, tbody tr td:not(:first-child) {

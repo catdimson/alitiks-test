@@ -122,10 +122,11 @@ USE_TZ = True
 
 # selery settings
 REDIS_PORT = '6379'
+REDIS_HOST = '0.0.0.0'
 RABBITMQ_PORT = '5672'
-CELERY_BROKER_URL = f'redis://redis:{REDIS_PORT}'
+CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/0'
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
-CELERY_RESULT_BACKEND = f'redis://redis:{REDIS_PORT}'
+CELERY_RESULT_BACKEND = f'redis://{REDIS_HOST}:{REDIS_PORT}/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -145,3 +146,18 @@ STATICFILES_DIRS = [STATIC_DIR]
 
 # !!!!!!! сюда будет собрана вся статика при наборе: python manage.py collectstatic
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+# всё, что ниже работает только для шаблонов
+# чтобы изменить вывод в админке нужно попыхтеть и создать кастомное поле
+# DATETIME_FORMAT = 'd-m-Y H:i'
+# DATE_INPUT_FORMATS = (
+#     '%d-%m-%Y',     # '21-03-2014'
+# )
+# TIME_INPUT_FORMATS = (
+#     '%H:%M:%S',     # '17:59:59'
+#     '%H:%M',        # '17:59'
+# )
+# DATETIME_INPUT_FORMATS = (
+#     '%d-%m-%Y %H:%M',     # '21-03-2014 17:59'
+# )
